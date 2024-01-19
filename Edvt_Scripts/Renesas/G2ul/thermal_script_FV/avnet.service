@@ -1,0 +1,28 @@
+[Unit]
+Description=Avnet Service
+After=multi-user.target
+
+[Service]
+Type=idle
+
+
+# Set XDG_RUNTIME_DIR explicitly
+Environment="XDG_RUNTIME_DIR=/run/user/$(id -u)"
+
+ExecStartPre=/bin/sleep 40
+
+# Use sudo with -E to preserve environment variables
+ExecStart=sudo -u root -E /home/root/images/image_test.sh
+
+TimeoutStartSec=120
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+#WorkingDirectory=/home/root/images
+
+
+[Install]
+WantedBy=multi-user.target

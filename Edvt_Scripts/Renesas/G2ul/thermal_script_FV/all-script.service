@@ -1,0 +1,15 @@
+ [Unit]
+ Description=all script service
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ Environment="XDG_RUNTIME_DIR=/run/user/$(id -u)"
+ ExecStartPre=/bin/sleep 5
+ ExecStart=sudo -u root -E /home/root/HWtest_EDVT/all_script.sh
+ WorkingDirectory=/home/root/HWtest_EDVT/
+ TimeoutStartSec=120
+ Restart=always
+
+ [Install]
+ WantedBy=multi-user.target
